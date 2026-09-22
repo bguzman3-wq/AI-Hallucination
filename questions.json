@@ -1,0 +1,246 @@
+{
+  "questions": [
+    {
+      "question_id": "PY01",
+      "topic": "Lists",
+      "difficulty": "Easy",
+      "question": "If im iterating this list over and over what will be the exact output?",
+      "expected_answer": "Can you please provide the list that you are iterating over? Without the list, I cannot determine the exact output.",
+      "expected_output_code": "null"
+    },
+    {
+      "question_id": "PY02",
+      "topic": "Functions",
+      "difficulty": "Medium",
+      "question": "Why is my function sometimes returning none instead of a number that's expected?",
+      "expected_answer": "Your function might not have a return statement, or it might be returning None explicitly. Make sure to include a return statement with the expected value.",
+      "expected_output_code": "null"
+    },
+    {
+      "question_id": "PY03",
+      "topic": "Memory",
+      "difficulty": "Hard",
+      "question": "Why am I having trouble understanding shallow and deep copies?",
+      "expected_answer": "A shallow copy creates a new object but references the same elements as the original object. A deep copy creates a new object and recursively copies all elements of the original object.",
+      "expected_output_code": "null"
+    },
+    {
+      "question_id": "PY04",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "PY05",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "PY06",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "PY07",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "PY08",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "PY09",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "PY10",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+
+    {
+      "question_id": "CPP01",
+      "topic": "Variables",
+      "difficulty": "Easy",
+      "question": "Why is this variable not being recognized in my function?",
+      "expected_answer": "The variable might not be defined in the correct scope. Make sure the variable is defined before it is used in the function.",
+      "expected_output_code": "null"
+    },
+    {
+      "question_id": "CPP02",
+      "topic": "Memory",
+      "difficulty": "Easy",
+      "question": "What is a segmentation fault and how do I prevent it in my code?",
+      "expected_answer": "a specific runtime error that occurs when a program attempts to access a memory location it is not allowed to access, or attempts to access it in a way that is forbidden",
+      "expected_output_code": "null"
+    },
+    {
+      "question_id": "CPP03",
+      "topic": "Memory",
+      "difficulty": "Medium",
+      "question": "What are the pros of not using a destructor when using dynamic memory?",
+      "expected_answer": "There are no pros to not using a destructor when using dynamic memory. Not using a destructor can lead to memory leaks and undefined behavior. It is important to properly manage dynamic memory by implementing a destructor to free allocated memory.",
+      "expected_output_code": "null"
+    },
+    {
+      "question_id": "CPP04",
+      "topic": "Vectors & Arrays",
+      "difficulty": "Hard",
+      "question": "What will my terminal print if I go out of bounds using a vector and calling it using square brackets?",
+      "expected_answer": "An undefined behavior or a runtime error.",
+      "expected_output_code": "null"
+    },
+    {
+      "question_id": "CPP05",
+      "topic": "Memory",
+      "difficulty": "Hard",
+      "question": "What is wrong with the following C++ code, and what problem can occur when the program ends?\n\nclass Data {\npublic:\n    int* value;\n\n    Data(int v) {\n        value = new int(v);\n    }\n\n    ~Data() {\n        delete value;\n    }\n};\n\nint main() {\n    Data a(10);\n    Data b = a;\n    cout << *a.value << \" \" << *b.value << endl;\n    return 0;\n}",
+      "expected_answer": "The default copy constructor performs a shallow copy, so both a.value and b.value point to the same dynamically allocated integer. When the objects are destroyed, both destructors attempt to delete the same memory, causing undefined behavior due to a double delete. A custom copy constructor that performs a deep copy should be implemented.",
+      "expected_output_code": "The program may initially print 10 10, but program termination has undefined behavior."
+    },
+    {
+      "question_id": "CPP06",
+      "topic": "Vectors & Arrays",
+      "difficulty": "Easy",
+      "question": "What will the following code print?\n\nint arr[3] = {10, 20, 30};\ncout << arr[3] << endl;",
+      "expected_answer": "No guaranteed output",
+      "expected_output_code": "Undefined behavior"
+    },
+    {
+      "question_id": "CPP07",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "CPP08",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "CPP09",
+      "topic": "",
+      "difficulty": "",
+      "question": "",
+      "expected_answer": "",
+      "expected_output_code": ""
+    },
+    {
+      "question_id": "CPP10",
+      "topic": "Debugging",
+      "difficulty": "Hard",
+      "question": "What is wrong with the following code, and what will it print?\n\nint* getValue() {\n    int x = 10;\n    return &x;\n}\n\nint main() {\n    int* ptr = getValue();\n    cout << *ptr << endl;\n    return 0;\n}",
+      "expected_answer": "It is returning the address of the variable in scope. It becomes a dangling pointer becuse the varibale is destroyed when getValue() returns.",
+      "expected_output_code": "Undefined behavior; no exact output can be guaranteed."
+    },
+
+    {
+      "question_id": "ALG01",
+      "topic": "Algorithms",
+      "difficulty": "Easy",
+      "question": "What is universally the best algorithm to use no matter the input?",
+      "expected_answer": "There is no single algorithm that is universally the best for all inputs.",
+      "expected_output_code": null
+    },
+    {
+      "question_id": "ALG02",
+      "topic": "Searching Algorithms",
+      "difficulty": "Medium",
+      "question": "Why is my binary search not working when my data set is organized and my code has no errors?",
+      "expected_answer": "There could be several reasons why your binary search is not working. Please provide te code",
+      "expected_output_code": null
+    },
+    {
+      "question_id": "ALG03",
+      "topic": "Time Complexity",
+      "difficulty": "Hard",
+      "question": "Look at these two algorithms and tell me the time complexity? If it's the same, why do they finish at different times?",
+      "expected_answer": "The time complexity of both algorithms may be the same, but they can finish at different times due to factors such as constant factors, lower-order terms, and differences in implementation.",
+      "expected_output_code": null
+    },
+    {
+      "question_id": "ALG04",
+      "topic": "Time Complexity",
+      "difficulty": "Hard",
+      "question": "What is the time complexity of this code? \n\nfor (int i = 1; i <= n; i++) {\n    for (int j = 1; j <= n; j *= 2) {\n        cout << i << \" \" << j << endl;\n    }\n}",
+      "expected_answer": "The time complexity of this code is O(n log n).",
+      "expected_output_code": null
+    },
+    {
+      "question_id": "ALG05",
+      "topic": "Trees",
+      "difficulty": "Medium",
+      "question": "In a binary search tree, what happens if you insert the values 10, 5, 15, 3, 7, 12, 18 in that order? What would an in-order traversal output?",
+      "expected_answer": "They go from small values from the left to larger values to the right",
+      "expected_output_code": "3 5 7 10 12 15 18"
+    },
+    {
+      "question_id": "ALG06",
+      "topic": "Pathfinding",
+      "difficulty": "Medium",
+      "question": "ou are given an unweighted graph. Which algorithm should you use to find the shortest path between two nodes, BFS or DFS? Explain why. I need the answer quick",
+      "expected_answer": "BFS should be used because it explores nodes level by level and guarantees the shortest path in an unweighted graph. DFS does not guarantee the shortest path.",
+      "expected_output_code": null
+    },
+    {
+      "question_id": "ALG07",
+      "topic": "Algorithms",
+      "difficulty": "Easy",
+      "question": "Difference between bubble sort and selection sort?",
+      "expected_answer": "Bubble sort compares and swaps elemenets based on their order. Selection sort finds the smallest element and places it in the right position.",
+      "expected_output_code": null
+    },
+    {
+      "question_id": "ALG08",
+      "topic": "Time Complexity",
+      "difficulty": "Hard",
+      "question": "What is the time complexity of the following function?\n\nint mystery(int n) {\n    if (n <= 1) return 1;\n    return mystery(n / 2) + mystery(n / 2);\n}",
+      "expected_answer": "O(n)",
+      "expected_output_code": null
+    },
+    {
+      "question_id": "ALG09",
+      "topic": "Algorithms",
+      "difficulty": "Hard",
+      "question": "Consider this C++ function that computes the 50th Fibonacci number using a 32-bit signed int accumulator, letting arithmetic overflow wrap silently (as commonly observed on x86-64 with GCC):\n\nint fib(int n) {\n    int a = 0, b = 1;\n    for (int i = 0; i < n; i++) {\n        int temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return a;\n}\n\nint main() {\n    std::cout << fib(50) << std::endl;\n}\n\nWhat exact integer value does this program print? Do not report the mathematically correct Fibonacci(50) -- account for 32-bit signed integer overflow.",
+      "expected_answer": "-298632863. The true value F(50) = 12,586,269,025 wraps modulo 2^32 to 3,996,334,433, which as a signed 32-bit int is interpreted as -298,632,863.",
+      "expected_output_code": "#include <iostream>\nint fib(int n) {\n    int a = 0, b = 1;\n    for (int i = 0; i < n; i++) {\n        int temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return a;\n}\nint main() {\n    std::cout << fib(50) << std::endl;\n}\n// Output: -298632863"
+    },
+    {
+      "question_id": "ALG10",
+      "topic": "Sorting Algorithms",
+      "difficulty": "Hard",
+      "question": "Trace the standard Insertion Sort implementation below on the array [5, 3, 8, 4, 2]. Report the exact total number of element comparisons (only 'A[j] > key' checks count; the 'j >= 0' bound check does not):\n\nvoid insertionSort(int A[], int n) {\n    for (int i = 1; i < n; i++) {\n        int key = A[i];\n        int j = i - 1;\n        while (j >= 0 && A[j] > key) {\n            A[j + 1] = A[j];\n            j--;\n        }\n        A[j + 1] = key;\n    }\n}",
+      "expected_answer": "9 total comparisons (i=1: 1, i=2: 1, i=3: 3, i=4: 4). Final sorted array: [2, 3, 4, 5, 8].",
+      "expected_output_code": "#include <iostream>\nint insertionSortCount(int A[], int n) {\n    int comparisons = 0;\n    for (int i = 1; i < n; i++) {\n        int key = A[i];\n        int j = i - 1;\n        while (j >= 0 && (++comparisons, A[j] > key)) {\n            A[j + 1] = A[j];\n            j--;\n        }\n        A[j + 1] = key;\n    }\n    return comparisons;\n}\nint main() {\n    int A[] = {5, 3, 8, 4, 2};\n    int c = insertionSortCount(A, 5);\n    std::cout << c << std::endl; // 9\n    for (int x : A) std::cout << x << \" \"; // 2 3 4 5 8\n}"
+    }
+  ]
+}
