@@ -117,8 +117,8 @@
       "topic": "Debugging",
       "difficulty": "Hard",
       "question": "What is wrong with the following C++ code, and what problem can occur when the program ends?\n\nclass Data {\npublic:\n    int* value;\n\n    Data(int v) {\n        value = new int(v);\n    }\n\n    ~Data() {\n        delete value;\n    }\n};\n\nint main() {\n    Data a(10);\n    Data b = a;\n    cout << *a.value << \" \" << *b.value << endl;\n    return 0;\n}",
-      "expected_answer": "The default copy constructor performs a shallow copy, so both a.value and b.value point to the same dynamically allocated integer. When the objects are destroyed, both destructors attempt to delete the same memory, causing undefined behavior due to a double delete. A custom copy constructor that performs a deep copy should be implemented.",
-      "expected_output_code": "The program may initially print 10 10, but program termination has undefined behavior."
+      "expected_answer": "The default copy constructor performs a shallow copy, so both a.value and b.value point to the same dynamically allocated integer. The program can initially print 10 10, but when the objects are destroyed both destructors attempt to delete the same memory. This causes undefined behavior because of a double delete.",
+      "expected_output_code": "The program can initially print 10 10, but no exact final behavior is guaranteed because the program performs a double delete."
     },
     {
       "question_id": "CPP06",
@@ -156,9 +156,9 @@
       "question_id": "CPP10",
       "topic": "Debugging",
       "difficulty": "Hard",
-      "question": "What is wrong with the following code, and what will it print?\n\nint* getValue() {\n    int x = 10;\n    return &x;\n}\n\nint main() {\n    int* ptr = getValue();\n    cout << *ptr << endl;\n    return 0;\n}",
-      "expected_answer": "It is returning the address of the variable in scope. It becomes a dangling pointer becuse the varibale is destroyed when getValue() returns.",
-      "expected_output_code": "Undefined behavior; no exact output can be guaranteed."
+      "question": "What is wrong with the following code, and can an exact output be guaranteed?\n\nint* getValue() {\n    int x = 10;\n    return &x;\n}\n\nint main() {\n    int* ptr = getValue();\n    cout << *ptr << endl;\n    return 0;\n}",
+      "expected_answer": "The function returns the address of the local variable x. When getValue() finishes, x is destroyed and ptr becomes a dangling pointer. Dereferencing ptr causes undefined behavior.",
+      "expected_output_code": "No exact output can be guaranteed because dereferencing the dangling pointer causes undefined behavior."
     },
     {
       "question_id": "ALG01",
@@ -228,9 +228,9 @@
       "question_id": "ALG09",
       "topic": "Predicting output",
       "difficulty": "Hard",
-      "question": "Consider this C++ function that computes the 50th Fibonacci number using a 32-bit signed int accumulator, letting arithmetic overflow wrap silently (as commonly observed on x86-64 with GCC):\n\nint fib(int n) {\n    int a = 0, b = 1;\n    for (int i = 0; i < n; i++) {\n        int temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return a;\n}\n\nint main() {\n    std::cout << fib(50) << std::endl;\n}\n\nWhat exact integer value does this program print? Do not report the mathematically correct Fibonacci(50) -- account for 32-bit signed integer overflow.",
-      "expected_answer": "-298632863. The true value F(50) = 12,586,269,025 wraps modulo 2^32 to 3,996,334,433, which as a signed 32-bit int is interpreted as -298,632,863.",
-      "expected_output_code": "#include <iostream>\nint fib(int n) {\n    int a = 0, b = 1;\n    for (int i = 0; i < n; i++) {\n        int temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return a;\n}\nint main() {\n    std::cout << fib(50) << std::endl;\n}\n// Output: -298632863"
+      "question": "Consider this C++ function that computes the 50th Fibonacci number using a 32-bit unsigned integer:\n\n#include <cstdint>\n#include <iostream>\n\nstd::uint32_t fib(int n) {\n    std::uint32_t a = 0, b = 1;\n    for (int i = 0; i < n; i++) {\n        std::uint32_t temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return a;\n}\n\nint main() {\n    std::cout << fib(50) << std::endl;\n}\n\nWhat exact integer value does this program print? Account for 32-bit unsigned integer wraparound.",
+      "expected_answer": "3996334433. The mathematical value of F(50) is 12,586,269,025. A 32-bit unsigned integer uses defined modulo 2^32 arithmetic, so 12,586,269,025 wraps to 3,996,334,433.",
+      "expected_output_code": "3996334433"
     },
     {
       "question_id": "ALG10",
