@@ -4,7 +4,7 @@
       "question_id": "PY01",
       "topic": "Edge case questions",
       "difficulty": "Easy",
-      "question": "If im iterating this list over and over what will be the exact output?",
+      "question": "If I'm iterating this list over and over what will be the exact output?",
       "expected_answer": "Can you please provide the list that you are iterating over? Without the list, I cannot determine the exact output.",
       "expected_output_code": null
     },
@@ -13,7 +13,7 @@
       "topic": "Code debugging without giving the code",
       "difficulty": "Medium",
       "question": "Why is my function sometimes returning none instead of a number that's expected?",
-      "expected_answer": "Your function might not have a return statement, or it might be returning None explicitly. Make sure to include a return statement with the expected value.",
+      "expected_answer": "Some code path in your function finishes without returning a number, so Python implicitly returns None. Common causes: an if/elif branch with no else (or no return after it), a recursive call whose result is not returned, returning the result of a method that returns None (such as list.sort() or list.append()), or an explicit bare return / return None on one path. Make sure every possible path returns the expected value.",
       "expected_output_code": null
     },
     {
@@ -38,13 +38,13 @@
       "difficulty": "Medium",
       "question": "Write a Python function that takes a list of words and returns a dictionary containing each word and the number of times it appears in the list. Make it fast!",
       "expected_answer": null,
-      "expected_output_code": "def count_words(words):\n    counts = {}\n    for word in words:\n        counts[word] = counts.get(word, 0) + 1\n    return counts"
+      "expected_output_code": "def count_words(words):\n    counts = {}\n    for word in words:\n        counts[word] = counts.get(word, 0) + 1\n    return counts\n\n# Equally O(n), but collections.Counter is faster in CPython (the counting loop runs in C):\n# from collections import Counter\n# def count_words(words):\n#     return dict(Counter(words))"
     },
     {
       "question_id": "PY06",
       "topic": "Explain the code",
       "difficulty": "Hard",
-      "question": "If I open a file in 'w' mode and there is aleady data in it, what happens to that data before I write new data?",
+      "question": "If I open a file in 'w' mode and there is already data in it, what happens to that data before I write new data?",
       "expected_answer": "Opening a file in 'w' mode truncates the file, meaning the existing contents are erased before new data is written.",
       "expected_output_code": null
     },
@@ -53,7 +53,7 @@
       "topic": "Explain the code",
       "difficulty": "Medium",
       "question": "If I create a variable inside a Python function and then try to use that variable outside the function. Will the variable still be available? Explain why or why not.",
-      "expected_answer": "Usually no. A variable created inside a function is local to that function and cannot be accessed outside it unless it is returned or otherwise made available outside the function.",
+      "expected_answer": "No. A variable assigned inside a function is local to that function's scope: it exists only while the function runs, so using its name outside the function raises a NameError. Returning it hands back the value (not the variable itself), which the caller can store in its own variable. The main exception is declaring the variable global inside the function, which makes it a module-level variable.",
       "expected_output_code": null
     },
     {
@@ -77,7 +77,7 @@
       "topic": "Predicting output",
       "difficulty": "Hard",
       "question": "What is the exact output of this Python 3 function call? Explain what happens to the return value from the try block.\n\ndef f():\n    try:\n        return 1\n    finally:\n        return 2\n\nprint(f())",
-      "expected_answer": "2 -- when a finally block contains its own return statement, it unconditionally overrides any return, exception, or break/continue propagating out of the try block. The try's 'return 1' begins to execute but is discarded once the finally block's 'return 2' runs.",
+      "expected_answer": "2 -- when a finally block contains its own return statement, it unconditionally overrides any return, exception, or break/continue propagating out of the try block. The try's 'return 1' begins to execute but is discarded once the finally block's 'return 2' runs. (Python 3.14 also emits a SyntaxWarning on stderr for a return inside finally, per PEP 765, but the program's output is still 2.)",
       "expected_output_code": "def f():\n    try:\n        return 1\n    finally:\n        return 2\nprint(f())\n# Output: 2"
     },
     {
@@ -86,37 +86,37 @@
       "difficulty": "Easy",
       "question": "Why is this variable not being recognized in my function?",
       "expected_answer": "The variable might not be defined in the correct scope. Make sure the variable is defined before it is used in the function.",
-      "expected_output_code": "null"
+      "expected_output_code": null
     },
     {
       "question_id": "CPP02",
       "topic": "Code debugging without giving the code",
       "difficulty": "Easy",
       "question": "What is a segmentation fault and how do I prevent it in my code?",
-      "expected_answer": "a specific runtime error that occurs when a program attempts to access a memory location it is not allowed to access, or attempts to access it in a way that is forbidden",
-      "expected_output_code": "null"
+      "expected_answer": "A segmentation fault is a runtime error that occurs when a program tries to access a memory location it is not allowed to access, or tries to access it in a way that is forbidden (for example, writing to read-only memory). Common causes are dereferencing a null or uninitialized pointer, using a dangling pointer (memory that was already freed, or a local variable that has gone out of scope), going out of bounds on an array or vector, and infinite recursion that overflows the stack. To prevent it: initialize pointers and check for nullptr before dereferencing, never return or keep pointers/references to local variables, do not use memory after delete/free, check array and vector bounds (for example with .at()), prefer smart pointers and standard containers over raw new/delete, and use tools such as AddressSanitizer, Valgrind, or a debugger like gdb to find the faulting access.",
+      "expected_output_code": null
     },
     {
       "question_id": "CPP03",
       "topic": "Code debugging without giving the code",
       "difficulty": "Medium",
       "question": "What are the pros of not using a destructor when using dynamic memory?",
-      "expected_answer": "There are no pros to not using a destructor when using dynamic memory. Not using a destructor can lead to memory leaks and undefined behavior. It is important to properly manage dynamic memory by implementing a destructor to free allocated memory.",
-      "expected_output_code": "null"
+      "expected_answer": "There are no real pros to not using a destructor when using dynamic memory. If a class owns memory allocated with new and has no destructor that deletes it, that memory is never released when the object is destroyed, which is a memory leak (a leak is not undefined behavior by itself, but the program keeps wasting memory and can eventually run out of it). It is important to manage dynamic memory properly by implementing a destructor that frees the allocated memory (and, if you do, also handling copying correctly: the Rule of Three/Five), or by using smart pointers such as std::unique_ptr so that cleanup is automatic.",
+      "expected_output_code": null
     },
     {
       "question_id": "CPP04",
       "topic": "Edge case questions",
       "difficulty": "Hard",
       "question": "What will my terminal print if I go out of bounds using a vector and calling it using square brackets?",
-      "expected_answer": "An undefined behavior or a runtime error.",
-      "expected_output_code": "null"
+      "expected_answer": "Undefined behavior, so there is no guaranteed output. std::vector's operator[] does no bounds checking and never throws, so the program may print garbage or a stale value, appear to work normally, or crash with a segmentation fault. A hardened build (for example, one compiled with -D_GLIBCXX_ASSERTIONS) aborts with an assertion message instead. Use .at() if you want a std::out_of_range exception.",
+      "expected_output_code": null
     },
     {
       "question_id": "CPP05",
       "topic": "Debugging",
       "difficulty": "Hard",
-      "question": "What is wrong with the following C++ code, and what problem can occur when the program ends?\n\nclass Data {\npublic:\n    int* value;\n\n    Data(int v) {\n        value = new int(v);\n    }\n\n    ~Data() {\n        delete value;\n    }\n};\n\nint main() {\n    Data a(10);\n    Data b = a;\n    cout << *a.value << \" \" << *b.value << endl;\n    return 0;\n}",
+      "question": "What is wrong with the following C++ code, and what problem can occur when the program ends?\n\n#include <iostream>\nusing namespace std;\n\nclass Data {\npublic:\n    int* value;\n\n    Data(int v) {\n        value = new int(v);\n    }\n\n    ~Data() {\n        delete value;\n    }\n};\n\nint main() {\n    Data a(10);\n    Data b = a;\n    cout << *a.value << \" \" << *b.value << endl;\n    return 0;\n}",
       "expected_answer": "The default copy constructor performs a shallow copy, so both a.value and b.value point to the same dynamically allocated integer. The program can initially print 10 10, but when the objects are destroyed both destructors attempt to delete the same memory. This causes undefined behavior because of a double delete.",
       "expected_output_code": "The program can initially print 10 10, but no exact final behavior is guaranteed because the program performs a double delete."
     },
@@ -132,7 +132,7 @@
       "question_id": "CPP07",
       "topic": "Predicting output",
       "difficulty": "Medium",
-      "question": "What will the following C++ code print, and why?\n\nvoid change(int a, int& b) {\n    a = 50;\n    b = 100;\n}\n\nint main() {\n    int x = 10;\n    int y = 20;\n    change(x, y);\n    cout << x << \" \" << y << endl;\n    return 0;\n}",
+      "question": "What will the following C++ code print, and why?\n\n#include <iostream>\nusing namespace std;\n\nvoid change(int a, int& b) {\n    a = 50;\n    b = 100;\n}\n\nint main() {\n    int x = 10;\n    int y = 20;\n    change(x, y);\n    cout << x << \" \" << y << endl;\n    return 0;\n}",
       "expected_answer": "The function receives a copy of x in parameter a, so changing a does not change x. Parameter b is passed by reference, so changing b changes y.",
       "expected_output_code": "10 100"
     },
@@ -141,7 +141,7 @@
       "topic": "Trace code",
       "difficulty": "Hard",
       "question": "What is the exact console output of this program, in order?\n\n#include <iostream>\nstruct Tracker {\n    int id;\n    Tracker(int i) : id(i) { std::cout << \"Ctor\" << id << \" \"; }\n    Tracker(const Tracker& other) : id(other.id) { std::cout << \"Copy\" << id << \" \"; }\n    ~Tracker() { std::cout << \"Dtor\" << id << \" \"; }\n};\n\nvoid byValue(Tracker t) {\n    std::cout << \"In\" << t.id << \" \";\n}\n\nint main() {\n    Tracker a(1);\n    byValue(a);\n    std::cout << \"End \";\n}\n\nAlso state exactly how many times the destructor runs and why.",
-      "expected_answer": "Ctor1 Copy1 In1 Dtor1 End Dtor1 -- The destructor runs twice: once for the by-value parameter `t` (a copy, destroyed when byValue returns) and once for `a` (destroyed at the end of main). The copy constructor fires because `t` is pass-by-value, not pass-by-reference.",
+      "expected_answer": "Ctor1 Copy1 In1 Dtor1 End Dtor1 -- The destructor runs twice: once for the by-value parameter `t` (a copy, destroyed when byValue returns) and once for `a` (destroyed at the end of main). The copy constructor fires because `t` is pass-by-value, not pass-by-reference. Note: every token is followed by a space and no newline is printed, so the raw output ends with a trailing space.",
       "expected_output_code": "#include <iostream>\nstruct Tracker {\n    int id;\n    Tracker(int i) : id(i) { std::cout << \"Ctor\" << id << \" \"; }\n    Tracker(const Tracker& other) : id(other.id) { std::cout << \"Copy\" << id << \" \"; }\n    ~Tracker() { std::cout << \"Dtor\" << id << \" \"; }\n};\nvoid byValue(Tracker t) {\n    std::cout << \"In\" << t.id << \" \";\n}\nint main() {\n    Tracker a(1);\n    byValue(a);\n    std::cout << \"End \";\n}\n// Output: Ctor1 Copy1 In1 Dtor1 End Dtor1"
     },
     {
@@ -156,7 +156,7 @@
       "question_id": "CPP10",
       "topic": "Debugging",
       "difficulty": "Hard",
-      "question": "What is wrong with the following code, and can an exact output be guaranteed?\n\nint* getValue() {\n    int x = 10;\n    return &x;\n}\n\nint main() {\n    int* ptr = getValue();\n    cout << *ptr << endl;\n    return 0;\n}",
+      "question": "What is wrong with the following code, and can an exact output be guaranteed?\n\n#include <iostream>\nusing namespace std;\n\nint* getValue() {\n    int x = 10;\n    return &x;\n}\n\nint main() {\n    int* ptr = getValue();\n    cout << *ptr << endl;\n    return 0;\n}",
       "expected_answer": "The function returns the address of the local variable x. When getValue() finishes, x is destroyed and ptr becomes a dangling pointer. Dereferencing ptr causes undefined behavior.",
       "expected_output_code": "No exact output can be guaranteed because dereferencing the dangling pointer causes undefined behavior."
     },
@@ -173,15 +173,15 @@
       "topic": "Code debugging without giving the code",
       "difficulty": "Medium",
       "question": "Why is my binary search not working when my data set is organized and my code has no errors?",
-      "expected_answer": "There could be several reasons why your binary search is not working. Please provide te code",
+      "expected_answer": "There could be several reasons why your binary search is not working. Please provide the code.",
       "expected_output_code": null
     },
     {
       "question_id": "ALG03",
       "topic": "Algorithm & complex analysis",
       "difficulty": "Hard",
-      "question": "Look at these two algorithms and tell me the time complexity? If it's the same, why do they finish at different times?",
-      "expected_answer": "The time complexity of both algorithms may be the same, but they can finish at different times due to factors such as constant factors, lower-order terms, and differences in implementation.",
+      "question": "Two algorithms have the same time complexity, but one consistently finishes faster than the other. Why can this happen?",
+      "expected_answer": "Time complexity (Big-O) only describes how the running time grows as the input size grows; it ignores constant factors and lower-order terms. Two algorithms with the same time complexity can still finish at different times because of different constant factors and lower-order terms (for example 2n vs 5n operations), implementation details (language, compiler optimizations, data structures, function-call overhead), memory access patterns and cache behavior, the particular input being tested (best, average, or worst case), and the hardware or system load at the time of measurement.",
       "expected_output_code": null
     },
     {
@@ -197,14 +197,14 @@
       "topic": "Trace code",
       "difficulty": "Medium",
       "question": "In a binary search tree, what happens if you insert the values 10, 5, 15, 3, 7, 12, 18 in that order? What would an in-order traversal output?",
-      "expected_answer": "They go from small values from the left to larger values to the right",
+      "expected_answer": "10 becomes the root; 5 and 15 become its left and right children; 3 and 7 go under 5, and 12 and 18 go under 15, giving a perfectly balanced tree (smaller values go left, larger values go right). An in-order traversal (left, node, right) of a BST always visits the values in sorted order: 3 5 7 10 12 15 18.",
       "expected_output_code": "3 5 7 10 12 15 18"
     },
     {
       "question_id": "ALG06",
       "topic": "Algorithm & complex analysis",
       "difficulty": "Medium",
-      "question": "ou are given an unweighted graph. Which algorithm should you use to find the shortest path between two nodes, BFS or DFS? Explain why. I need the answer quick",
+      "question": "You are given an unweighted graph. Which algorithm should you use to find the shortest path between two nodes, BFS or DFS? Explain why. I need the answer quick",
       "expected_answer": "BFS should be used because it explores nodes level by level and guarantees the shortest path in an unweighted graph. DFS does not guarantee the shortest path.",
       "expected_output_code": null
     },
@@ -213,7 +213,7 @@
       "topic": "Explain the code",
       "difficulty": "Easy",
       "question": "Difference between bubble sort and selection sort?",
-      "expected_answer": "Bubble sort compares and swaps elemenets based on their order. Selection sort finds the smallest element and places it in the right position.",
+      "expected_answer": "Bubble sort repeatedly compares adjacent elements and swaps them when they are out of order, so the largest remaining element bubbles to the end on each pass (this can take many swaps). Selection sort scans the unsorted part for the smallest element and swaps it into its correct position, using at most one swap per pass (n-1 swaps total). Both are O(n^2) in the worst case.",
       "expected_output_code": null
     },
     {
