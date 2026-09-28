@@ -17,5 +17,12 @@ word1 = {"Hello", "hello", "Yay"}
 print(count_words(word1))
 
 #PY09
+print(round(2.675, 2))
 
-
+#PY10
+def f():
+    try:
+        return 1
+    finally:
+        return 2
+print(f())
