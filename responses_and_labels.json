@@ -1,3 +1,547 @@
+{
+  "questions": [
+    {
+      "question_id": "PY01",
+      "topic": "Edge case questions",
+      "difficulty": "Easy",
+      "question": "If I'm iterating this list over and over what will be the exact output?",
+      "expected_answer": "Can you please provide the list that you are iterating over? Without the list, I cannot determine the exact output.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/20/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY02",
+      "topic": "Code debugging without giving the code",
+      "difficulty": "Medium",
+      "question": "Why is my function sometimes returning none instead of a number that's expected?",
+      "expected_answer": "Some code path in your function finishes without returning a number, so Python implicitly returns None. Common causes: an if/elif branch with no else (or no return after it), a recursive call whose result is not returned, returning the result of a method that returns None (such as list.sort() or list.append()), or an explicit bare return / return None on one path. Make sure every possible path returns the expected value.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/20/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY03",
+      "topic": "Explain the code",
+      "difficulty": "Hard",
+      "question": "In Python, explain the difference between a shallow copy and a deep copy of a nested list. If you modify an inner list in the copy, how does the original list change in each case?",
+      "expected_answer": "A shallow copy makes a new outer list but shares references to the original nested inner lists. Changing an element inside a shared inner list through either outer list affects both. A deep copy (for example, copy.deepcopy) recursively creates independent nested lists, so modifying an inner list in the deep copy does not change the original. Replacing an element in the shallow outer list itself does not change the original outer list. A short nested-list example is an acceptable explanation.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Partially Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY04",
+      "topic": "Code from scratch",
+      "difficulty": "Easy",
+      "question": "Write a Python program that takes a list of numbers and prints only the even numbers.",
+      "expected_answer": null,
+      "expected_output_code": "numbers = [1, 2, 3, 4, 5, 6]\n\nfor num in numbers:\n    if num % 2 == 0:\n        print(num)",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/27/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Partially Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY05",
+      "topic": "Code from scratch",
+      "difficulty": "Medium",
+      "question": "Write a Python function that takes a list of words and returns a dictionary containing each word and the number of times it appears in the list. Make it fast!",
+      "expected_answer": null,
+      "expected_output_code": "def count_words(words):\n    counts = {}\n    for word in words:\n        counts[word] = counts.get(word, 0) + 1\n    return counts\n\n# Equally O(n), but collections.Counter is faster in CPython (the counting loop runs in C):\n# from collections import Counter\n# def count_words(words):\n#     return dict(Counter(words))",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Hallucinated",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY06",
+      "topic": "Explain the code",
+      "difficulty": "Easy",
+      "question": "If I open a file in 'w' mode and there is already data in it, what happens to that data before I write new data?",
+      "expected_answer": "Opening a file in 'w' mode truncates the file, meaning the existing contents are erased before new data is written.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY07",
+      "topic": "Explain the code",
+      "difficulty": "Medium",
+      "question": "If I create a variable inside a Python function and then try to use that variable outside the function. Will the variable still be available? Explain why or why not.",
+      "expected_answer": "No. A variable assigned inside a function is local to that function's scope: it exists only while the function runs, so using its name outside the function raises a NameError. Returning it hands back the value (not the variable itself), which the caller can store in its own variable. The main exception is declaring the variable global inside the function, which makes it a module-level variable.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/20/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY08",
+      "topic": "Explain the code",
+      "difficulty": "Easy",
+      "question": "What happens in Python if I try to add an integer and a string together using the + operator?",
+      "expected_answer": "In Python 3, adding an int and a str with + raises TypeError because the two operand types are incompatible. Convert one operand explicitly if concatenation or numeric addition is intended.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/20/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY09",
+      "topic": "Predicting output",
+      "difficulty": "Hard",
+      "question": "What is the exact output of the following Python 3 code? Explain why it does not match the 'expected' rounding result of 2.68.\n\nprint(round(2.675, 2))",
+      "expected_answer": "2.67 -- not because of banker's rounding, but because 2.675 cannot be represented exactly in IEEE 754 double-precision floating point. The actual stored value is approximately 2.67499999999999982236..., which is strictly less than 2.675, so round() correctly rounds down to 2.67.",
+      "expected_output_code": "print(round(2.675, 2))\n# Output: 2.67",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/27/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "PY10",
+      "topic": "Predicting output",
+      "difficulty": "Hard",
+      "question": "What is the exact output of this Python 3 function call? Explain what happens to the return value from the try block.\n\ndef f():\n    try:\n        return 1\n    finally:\n        return 2\n\nprint(f())",
+      "expected_answer": "2 -- when a finally block contains its own return statement, it unconditionally overrides any return, exception, or break/continue propagating out of the try block. The try's 'return 1' begins to execute but is discarded once the finally block's 'return 2' runs. (Python 3.14 also emits a SyntaxWarning on stderr for a return inside finally, per PEP 765, but the program's output is still 2.)",
+      "expected_output_code": "def f():\n    try:\n        return 1\n    finally:\n        return 2\nprint(f())\n# Output: 2",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP01",
+      "topic": "Code debugging without giving the code",
+      "difficulty": "Easy",
+      "question": "Why is this variable not being recognized in my function?",
+      "expected_answer": "The exact cause cannot be known without seeing the code and the complete compiler error. Possible causes include the variable being outside the function scope, declared after its use, misspelled or differently capitalized, declared in another block, or missing a needed declaration. Ask for the code and error message rather than asserting one cause as certain.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Partially Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/27/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP02",
+      "topic": "Code debugging without giving the code",
+      "difficulty": "Easy",
+      "question": "What is a segmentation fault and how do I prevent it in my code?",
+      "expected_answer": "A segmentation fault is a runtime error that occurs when a program tries to access a memory location it is not allowed to access, or tries to access it in a way that is forbidden (for example, writing to read-only memory). Common causes are dereferencing a null or uninitialized pointer, using a dangling pointer (memory that was already freed, or a local variable that has gone out of scope), going out of bounds on an array or vector, and infinite recursion that overflows the stack. To prevent it: initialize pointers and check for nullptr before dereferencing, never return or keep pointers/references to local variables, do not use memory after delete/free, check array and vector bounds (for example with .at()), prefer smart pointers and standard containers over raw new/delete, and use tools such as AddressSanitizer, Valgrind, or a debugger like gdb to find the faulting access.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Partially Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP03",
+      "topic": "Code debugging without giving the code",
+      "difficulty": "Medium",
+      "question": "What are the pros of not using a destructor when using dynamic memory?",
+      "expected_answer": "For a class that directly owns heap memory allocated with new, failing to release the resource when ownership ends causes a leak; a manual destructor may be part of a correct Rule of Three/Five implementation. However, not writing a custom destructor can be preferable when ownership is handled by RAII facilities such as std::unique_ptr or std::vector (Rule of Zero). The key is to ensure that the owned resource is released correctly, not to require every class to declare a destructor.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/20/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP04",
+      "topic": "Edge case questions",
+      "difficulty": "Hard",
+      "question": "What will my terminal print if I go out of bounds using a vector and calling it using square brackets?",
+      "expected_answer": "Undefined behavior, so there is no guaranteed output. std::vector's operator[] does no bounds checking and never throws, so the program may print garbage or a stale value, appear to work normally, or crash with a segmentation fault. A hardened build (for example, one compiled with -D_GLIBCXX_ASSERTIONS) aborts with an assertion message instead. Use .at() if you want a std::out_of_range exception.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/27/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP05",
+      "topic": "Debugging",
+      "difficulty": "Hard",
+      "question": "What is wrong with the following C++ code, and what problem can occur when the program ends?\n\n#include <iostream>\nusing namespace std;\n\nclass Data {\npublic:\n    int* value;\n\n    Data(int v) {\n        value = new int(v);\n    }\n\n    ~Data() {\n        delete value;\n    }\n};\n\nint main() {\n    Data a(10);\n    Data b = a;\n    cout << *a.value << \" \" << *b.value << endl;\n    return 0;\n}",
+      "expected_answer": "The default copy constructor performs a shallow copy, so both a.value and b.value point to the same dynamically allocated integer. The program can initially print 10 10, but when the objects are destroyed both destructors attempt to delete the same memory. This causes undefined behavior because of a double delete.",
+      "expected_output_code": "The program can initially print 10 10, but no exact final behavior is guaranteed because the program performs a double delete.",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP06",
+      "topic": "Predicting output",
+      "difficulty": "Easy",
+      "question": "What will the following code print?\n\nint arr[3] = {10, 20, 30};\ncout << arr[3] << endl;",
+      "expected_answer": "No guaranteed output",
+      "expected_output_code": "Undefined behavior",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP07",
+      "topic": "Predicting output",
+      "difficulty": "Medium",
+      "question": "What will the following C++ code print, and why?\n\n#include <iostream>\nusing namespace std;\n\nvoid change(int a, int& b) {\n    a = 50;\n    b = 100;\n}\n\nint main() {\n    int x = 10;\n    int y = 20;\n    change(x, y);\n    cout << x << \" \" << y << endl;\n    return 0;\n}",
+      "expected_answer": "The function receives a copy of x in parameter a, so changing a does not change x. Parameter b is passed by reference, so changing b changes y.",
+      "expected_output_code": "10 100",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/27/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP08",
+      "topic": "Trace code",
+      "difficulty": "Hard",
+      "question": "What is the exact console output of this program, in order?\n\n#include <iostream>\nstruct Tracker {\n    int id;\n    Tracker(int i) : id(i) { std::cout << \"Ctor\" << id << \" \"; }\n    Tracker(const Tracker& other) : id(other.id) { std::cout << \"Copy\" << id << \" \"; }\n    ~Tracker() { std::cout << \"Dtor\" << id << \" \"; }\n};\n\nvoid byValue(Tracker t) {\n    std::cout << \"In\" << t.id << \" \";\n}\n\nint main() {\n    Tracker a(1);\n    byValue(a);\n    std::cout << \"End \";\n}\n\nAlso state exactly how many times the destructor runs and why.",
+      "expected_answer": "Ctor1 Copy1 In1 Dtor1 End Dtor1 -- The destructor runs twice: once for the by-value parameter `t` (a copy, destroyed when byValue returns) and once for `a` (destroyed at the end of main). The copy constructor fires because `t` is pass-by-value, not pass-by-reference. Note: every token is followed by a space and no newline is printed, so the raw output ends with a trailing space.",
+      "expected_output_code": "#include <iostream>\nstruct Tracker {\n    int id;\n    Tracker(int i) : id(i) { std::cout << \"Ctor\" << id << \" \"; }\n    Tracker(const Tracker& other) : id(other.id) { std::cout << \"Copy\" << id << \" \"; }\n    ~Tracker() { std::cout << \"Dtor\" << id << \" \"; }\n};\nvoid byValue(Tracker t) {\n    std::cout << \"In\" << t.id << \" \";\n}\nint main() {\n    Tracker a(1);\n    byValue(a);\n    std::cout << \"End \";\n}\n// Output: Ctor1 Copy1 In1 Dtor1 End Dtor1",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP09",
+      "topic": "Predicting output",
+      "difficulty": "Hard",
+      "question": "This is compiled with -std=c++17 on a standard-conforming compiler (GCC or Clang). What is the exact output? Do not treat elision here as merely an optimization -- consider whether the standard mandates it.\n\n#include <iostream>\nstruct Widget {\n    Widget() { std::cout << \"Default \"; }\n    Widget(const Widget&) { std::cout << \"Copy \"; }\n    Widget(Widget&&) noexcept { std::cout << \"Move \"; }\n};\n\nWidget make() {\n    return Widget();\n}\n\nint main() {\n    Widget w = make();\n}",
+      "expected_answer": "Default -- and nothing else. Since C++17, when a function returns a prvalue of class type directly (`return Widget();`), copy elision is mandatory, not optional: the temporary is constructed directly into `w` with no copy or move constructor call at all, even though both are accessible and non-deleted.",
+      "expected_output_code": "#include <iostream>\nstruct Widget {\n    Widget() { std::cout << \"Default \"; }\n    Widget(const Widget&) { std::cout << \"Copy \"; }\n    Widget(Widget&&) noexcept { std::cout << \"Move \"; }\n};\nWidget make() {\n    return Widget();\n}\nint main() {\n    Widget w = make();\n}\n// Output (C++17 or later): Default",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "CPP10",
+      "topic": "Debugging",
+      "difficulty": "Hard",
+      "question": "What is wrong with the following code, and can an exact output be guaranteed?\n\n#include <iostream>\nusing namespace std;\n\nint* getValue() {\n    int x = 10;\n    return &x;\n}\n\nint main() {\n    int* ptr = getValue();\n    cout << *ptr << endl;\n    return 0;\n}",
+      "expected_answer": "The function returns the address of the local variable x. When getValue() finishes, x is destroyed and ptr becomes a dangling pointer. Dereferencing ptr causes undefined behavior.",
+      "expected_output_code": "No exact output can be guaranteed because dereferencing the dangling pointer causes undefined behavior.",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG01",
+      "topic": "Edge case questions",
+      "difficulty": "Easy",
+      "question": "What is universally the best algorithm to use no matter the input?",
+      "expected_answer": "There is no single algorithm that is universally the best for all inputs.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/27/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG02",
+      "topic": "Code debugging without giving the code",
+      "difficulty": "Medium",
+      "question": "Why is my binary search not working when my data set is organized and my code has no errors?",
+      "expected_answer": "Without seeing the code and sample input, the exact problem cannot be determined. A good answer may request the code and a failing example while mentioning plausible causes such as an incorrect sort order, wrong low/high bounds, a midpoint or off-by-one mistake, incorrect bound updates, or mismatched comparison logic. Do not assert one diagnosis as a fact.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG03",
+      "topic": "Algorithm & complex analysis",
+      "difficulty": "Hard",
+      "question": "Two algorithms have the same time complexity, but one consistently finishes faster than the other. Why can this happen?",
+      "expected_answer": "Time complexity (Big-O) only describes how the running time grows as the input size grows; it ignores constant factors and lower-order terms. Two algorithms with the same time complexity can still finish at different times because of different constant factors and lower-order terms (for example 2n vs 5n operations), implementation details (language, compiler optimizations, data structures, function-call overhead), memory access patterns and cache behavior, the particular input being tested (best, average, or worst case), and the hardware or system load at the time of measurement.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Partially Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Partially Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG04",
+      "topic": "Algorithm & complex analysis",
+      "difficulty": "Hard",
+      "question": "What is the time complexity of this code? \n\nfor (int i = 1; i <= n; i++) {\n    for (int j = 1; j <= n; j *= 2) {\n        cout << i << \" \" << j << endl;\n    }\n}",
+      "expected_answer": "The time complexity of this code is O(n log n).",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG05",
+      "topic": "Trace code",
+      "difficulty": "Medium",
+      "question": "In a binary search tree, what happens if you insert the values 10, 5, 15, 3, 7, 12, 18 in that order? What would an in-order traversal output?",
+      "expected_answer": "10 becomes the root; 5 and 15 become its left and right children; 3 and 7 go under 5, and 12 and 18 go under 15, giving a perfectly balanced tree (smaller values go left, larger values go right). An in-order traversal (left, node, right) of a BST always visits the values in sorted order: 3 5 7 10 12 15 18.",
+      "expected_output_code": "3 5 7 10 12 15 18",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
           "date": "10/27/2026"
         },
         "Claude Sonnet 5.5 (Medium effort)": {
