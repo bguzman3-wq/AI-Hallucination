@@ -1,0 +1,120 @@
+          "date": "10/27/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG06",
+      "topic": "Algorithm & complex analysis",
+      "difficulty": "Medium",
+      "question": "You are given an unweighted graph. Which algorithm should you use to find the shortest path between two nodes, BFS or DFS? Explain why. I need the answer quick",
+      "expected_answer": "BFS should be used because it explores nodes level by level and guarantees the shortest path in an unweighted graph. DFS does not guarantee the shortest path.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Partially Correct",
+          "date": "10/20/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG07",
+      "topic": "Explain the code",
+      "difficulty": "Easy",
+      "question": "Difference between bubble sort and selection sort?",
+      "expected_answer": "Bubble sort repeatedly compares adjacent elements and swaps them when they are out of order, so the largest remaining element bubbles to the end on each pass (this can take many swaps). Selection sort scans the unsorted part for the smallest element and swaps it into its correct position, using at most one swap per pass (n-1 swaps total). Both are O(n^2) in the worst case.",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG08",
+      "topic": "Algorithm & complex analysis",
+      "difficulty": "Hard",
+      "question": "What is the time complexity of the following function?\n\nint mystery(int n) {\n    if (n <= 1) return 1;\n    return mystery(n / 2) + mystery(n / 2);\n}",
+      "expected_answer": "O(n)",
+      "expected_output_code": null,
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/20/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG09",
+      "topic": "Predicting output",
+      "difficulty": "Hard",
+      "question": "Consider this C++ function that computes the 50th Fibonacci number using a 32-bit unsigned integer:\n\n#include <cstdint>\n#include <iostream>\n\nstd::uint32_t fib(int n) {\n    std::uint32_t a = 0, b = 1;\n    for (int i = 0; i < n; i++) {\n        std::uint32_t temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return a;\n}\n\nint main() {\n    std::cout << fib(50) << std::endl;\n}\n\nWhat exact integer value does this program print? Account for 32-bit unsigned integer wraparound.",
+      "expected_answer": "3996334433. The mathematical value of F(50) is 12,586,269,025. A 32-bit unsigned integer uses defined modulo 2^32 arithmetic, so 12,586,269,025 wraps to 3,996,334,433.",
+      "expected_output_code": "3996334433",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Incorrect",
+          "date": "10/27/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        }
+      }
+    },
+    {
+      "question_id": "ALG10",
+      "topic": "Trace code",
+      "difficulty": "Hard",
+      "question": "Trace the standard Insertion Sort implementation below on the array [5, 3, 8, 4, 2]. Report the exact total number of element comparisons (only 'A[j] > key' checks count; the 'j >= 0' bound check does not):\n\nvoid insertionSort(int A[], int n) {\n    for (int i = 1; i < n; i++) {\n        int key = A[i];\n        int j = i - 1;\n        while (j >= 0 && A[j] > key) {\n            A[j + 1] = A[j];\n            j--;\n        }\n        A[j + 1] = key;\n    }\n}",
+      "expected_answer": "9 total comparisons (i=1: 1, i=2: 1, i=3: 3, i=4: 4). Final sorted array: [2, 3, 4, 5, 8].",
+      "expected_output_code": "#include <iostream>\nint insertionSortCount(int A[], int n) {\n    int comparisons = 0;\n    for (int i = 1; i < n; i++) {\n        int key = A[i];\n        int j = i - 1;\n        while (j >= 0 && (++comparisons, A[j] > key)) {\n            A[j + 1] = A[j];\n            j--;\n        }\n        A[j + 1] = key;\n    }\n    return comparisons;\n}\nint main() {\n    int A[] = {5, 3, 8, 4, 2};\n    int c = insertionSortCount(A, 5);\n    std::cout << c << std::endl; // 9\n    for (int x : A) std::cout << x << \" \"; // 2 3 4 5 8\n}",
+      "model_results": {
+        "GPT-5.6 Sol": {
+          "label": "Correct",
+          "date": "11/02/2026"
+        },
+        "Gemini 3.6 Flash": {
+          "label": "Correct",
+          "date": "10/30/2026"
+        },
+        "Claude Sonnet 5.5 (Medium effort)": {
+          "label": "Partially Correct",
+          "date": "11/02/2026"
+        }
+      }
+    }
+  ]
+}
